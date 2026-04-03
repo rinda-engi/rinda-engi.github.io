@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rinda Engineering - บริษัทรับเหมาก่อสร้าง</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- AOS Animation -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <!-- Lightbox -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+         :root {
+            --primary-orange: #d97435;
+            --primary-brown: #a0522d;
+            --dark-brown: #6b3d1e;
+            --light-bg: #fbfbfd;
+            --text-dark: #1d1d1f;
+            --text-light: #6e6e73;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--light-bg);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+        /* Navbar */
+        
+        .navbar {
+            background: rgba(251, 251, 253, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            padding: 0.5rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            background: rgba(251, 251, 253, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            color: var(--primary-orange);
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        
+        .nav-link {
+            color: var(--text-dark);
+            font-weight: 500;
+            margin: 0 12px;
+            transition: all 0.2s ease;
+        }
+        
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--primary-orange);
+            font-weight: 600;
+        }
+        /* Hero */
+        
+        .hero {
+            background: linear-gradient(135deg, var(--primary-orange), var(--primary-brown));
+            color: white;
+            text-align: center;
+            padding: 160px 0 100px;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1600&q=80') center/cover;
+            opacity: 0.15;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 60px;
+            font-weight: 700;
+        }
+        
+        .hero p.subtitle {
+            font-size: 24px;
+            margin: 16px 0;
+        }
+        
+        .btn-hero {
+            background: var(--primary-brown);
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-hero:hover {
+            background: var(--primary-orange);
+            color: white;
+        }
+        /* Stats */
+        
+        .stat-card {
+            text-align: center;
+            padding: 40px 20px;
+            background: #f5f5f7;
+            border-radius: 18px;
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--primary-orange);
+            margin-bottom: 8px;
+        }
+        
+        .stat-label {
+            font-size: 16px;
+            color: var(--text-light);
+        }
+        /* Services */
+        
+        .service-card {
+            background: white;
+            padding: 40px 20px;
+            border-radius: 18px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #e5e5e7;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(217, 116, 53, 0.15);
+            border-color: var(--primary-orange);
+        }
+        
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-orange), var(--primary-brown));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 36px;
+            color: white;
+        }
+        /* Portfolio */
+        
+        .portfolio-item {
+            position: relative;
+            border-radius: 18px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .portfolio-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .portfolio-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+            color: white;
+            padding: 20px;
+        }
+        
+        .portfolio-overlay h4 {
+            font-size: 18px;
+            margin: 0 0 5px;
+        }
+        /* Clients */
+        
+        .clients-section img {
+            filter: grayscale(0.8);
+            transition: all 0.3s ease;
+        }
+        
+        .clients-section img:hover {
+            filter: grayscale(0);
+            transform: scale(1.1);
+        }
+        /* Footer */
+        
+        footer {
+            background: #1d1d1f;
+            color: #f5f5f7;
+            padding: 60px 0 20px;
+        }
+        
+        footer a {
+            color: #a1a1a6;
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            color: var(--primary-orange);
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary-orange);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 999;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        @media(max-width:768px) {
+            .hero h1 {
+                font-size: 40px;
+            }
+            .hero p.subtitle {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="#home">Rinda Engineering</a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#home">หน้าแรก</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">บริการ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#portfolio">ผลงาน</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">ติดต่อเรา</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h1 data-aos="fade-up">Rinda Engineering</h1>
+            <p class="subtitle" data-aos="fade-up" data-aos-delay="100">สร้างสรรค์ผลงานคุณภาพ ด้วยมาตรฐานระดับสากล</p>
+            <a href="#contact" class="btn btn-hero mt-3" data-aos="fade-up" data-aos-delay="200">ติดต่อเรา</a>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-4 text-center">
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-number" id="years">0</div>
+                        <div class="stat-label">ปีประสบการณ์</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-number" id="projects">0</div>
+                        <div class="stat-label">โครงการสำเร็จ</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-number" id="satisfaction">0</div>
+                        <div class="stat-label">ความพึงพอใจ</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-number" id="team">0</div>
+                        <div class="stat-label">ทีมมืออาชีพ</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="py-5" id="services">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">บริการของเรา</h2>
+                <p class="section-subtitle">ครบวงจร ครอบคลุมทุกความต้องการด้านการก่อสร้าง</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="bi bi-building"></i></div>
+                        <h3>งานก่อสร้างอาคาร</h3>
+                        <p>รับเหมาก่อสร้างอาคารทุกประเภท</p>
+                        <a href="#contact" class="btn btn-outline-warning mt-2">ติดต่อเรา</a>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="bi bi-hammer"></i></div>
+                        <h3>ต่อเติม-รีโนเวท</h3>
+                        <p>ปรับปรุงอาคารเก่าให้ทันสมัย</p>
+                        <a href="#contact" class="btn btn-outline-warning mt-2">ติดต่อเรา</a>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="service-card">
+                        <div class="service-icon"><i class="bi bi-gear"></i></div>
+                        <h3>งานโครงสร้าง</h3>
+                        <p>ออกแบบและก่อสร้างเสาเข็ม งานโครงเหล็ก</p>
+                        <a href="#contact" class="btn btn-outline-warning mt-2">ติดต่อเรา</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio -->
+    <section class="py-5 bg-light" id="portfolio">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title">ผลงานของเรา</h2>
+                <p class="section-subtitle">โครงการที่ภูมิใจและประสบความสำเร็จ</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <a href="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80" data-lightbox="portfolio" class="portfolio-item">
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80" alt="โครงการอาคารสำนักงาน">
+                        <div class="portfolio-overlay">
+                            <h4>โครงการอาคารสำนักงาน CBD</h4>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600&q=80" data-lightbox="portfolio" class="portfolio-item">
+                        <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600&q=80" alt="โครงการโรงงาน">
+                        <div class="portfolio-overlay">
+                            <h4>โครงการโรงงาน</h4>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clients -->
+    <section class="py-5 clients-section">
+        <div class="container text-center">
+            <h2 class="mb-4">บริษัทที่เคยร่วมงานด้วย</h2>
+            <div class="d-flex justify-content-center flex-wrap gap-4">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" height="50">
+                <img src="https://cdn.brandfetch.io/dimensiondata.com/fallback/lettermark/theme/dark/h/256/w/256/icon?c=1bfwsmEH20zzEfSNTed" alt="NTT DATA" height="50">
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container text-center text-md-start">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5>Rinda Engineering</h5>
+                    <p>บริษัทรับเหมาก่อสร้างทั่วไป ที่คุณไว้วางใจ มุ่งมั่นสร้างสรรค์ผลงานคุณภาพ</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>ติดต่อเรา</h5>
+                    <p>📍 123/45 ถนนสุขุมวิท กรุงเทพฯ</p>
+                    <p>📞 02-XXX-XXXX</p>
+                    <p>✉️ info@rindaengineering.com</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Social</h5>
+                    <a href="#"><i class="bi bi-facebook me-2"></i>Facebook</a><br>
+                    <a href="#"><i class="bi bi-linkedin me-2"></i>LinkedIn</a>
+                </div>
+            </div>
+            <div class="text-center mt-4">&copy; 2024 Rinda Engineering. All Rights Reserved.</div>
+        </div>
+    </footer>
+
+    <!-- Back to top -->
+    <div class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/countup.js/2.6.2/countUp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+
+    <script>
+        AOS.init();
+
+        // Stats Animation
+        const options = {
+            duration: 2,
+            separator: ','
+        };
+        const years = new CountUp('years', 15, options);
+        const projects = new CountUp('projects', 200, options);
+        const satisfaction = new CountUp('satisfaction', 98, options);
+        const team = new CountUp('team', 50, options);
+
+        window.addEventListener('scroll', () => {
+            const statsSection = document.querySelector('.stat-card');
+            if (statsSection.getBoundingClientRect().top < window.innerHeight) {
+                years.start();
+                projects.start();
+                satisfaction.start();
+                team.start();
+            }
+        });
+
+        // Navbar Scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Back to top
+        const backToTop = document.getElementById('backToTop');
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+
+</html>
