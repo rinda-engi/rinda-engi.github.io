@@ -4,467 +4,1550 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rinda Engineering - บริษัทรับเหมาก่อสร้าง</title>
+    <meta name="description" content="Rinda Engineering - ผู้เชี่ยวชาญติดตั้งโซล่าเซลล์ระดับองค์กร รับประกัน 25 ปี ประหยัดค่าไฟ 90%">
+    <meta name="keywords" content="โซล่าเซลล์, solar cell, ติดตั้งโซล่าเซลล์, พลังงานสะอาด">
+    <title>Rinda Engineering - ผู้นำด้านโซล่าเซลล์และก่อสร้างระดับองค์กร</title>
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css" rel="stylesheet">
-    <!-- AOS Animation -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
-    <!-- Lightbox -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 
     <style>
          :root {
-            --primary-orange: #d97435;
-            --primary-brown: #a0522d;
-            --dark-brown: #6b3d1e;
-            --light-bg: #fbfbfd;
-            --text-dark: #1d1d1f;
-            --text-light: #6e6e73;
+            --primary: #ff8c00;
+            --primary-dark: #d97435;
+            --secondary: #8b4513;
+            --dark: #1a1a1a;
+            --light: #fef9f3;
+            --gradient: linear-gradient(135deg, #ff8c00, #d97435);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
         }
         
         body {
-            font-family: 'Inter', sans-serif;
-            background: var(--light-bg);
-            color: var(--text-dark);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             overflow-x: hidden;
+            color: var(--dark);
+        }
+        /* Preloader */
+        
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        /* Top Bar */
+        
+        .top-bar {
+            background: var(--dark);
+            color: white;
+            padding: 8px 0;
+            font-size: 14px;
+        }
+        
+        .top-bar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+        
+        .top-bar a:hover {
+            color: var(--primary);
         }
         /* Navbar */
         
         .navbar {
-            background: rgba(251, 251, 253, 0.8);
-            backdrop-filter: saturate(180%) blur(20px);
-            padding: 0.5rem 0;
-            transition: all 0.3s ease;
-        }
-        
-        .navbar.scrolled {
-            background: rgba(251, 251, 253, 0.95);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.98) !important;
+            box-shadow: 0 2px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            padding: 12px 0;
         }
         
         .navbar-brand {
-            color: var(--primary-orange);
             font-weight: 700;
-            letter-spacing: -0.5px;
+            color: var(--primary) !important;
+            font-size: 1.6rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .navbar-brand img {
+            height: 40px;
         }
         
         .nav-link {
-            color: var(--text-dark);
+            color: var(--dark) !important;
             font-weight: 500;
-            margin: 0 12px;
-            transition: all 0.2s ease;
-        }
-        
-        .nav-link:hover,
-        .nav-link.active {
-            color: var(--primary-orange);
-            font-weight: 600;
-        }
-        /* Hero */
-        
-        .hero {
-            background: linear-gradient(135deg, var(--primary-orange), var(--primary-brown));
-            color: white;
-            text-align: center;
-            padding: 160px 0 100px;
+            padding: 8px 16px !important;
+            transition: all 0.3s;
             position: relative;
         }
         
-        .hero::before {
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: all 0.3s;
+            transform: translateX(-50%);
+        }
+        
+        .nav-link:hover::after {
+            width: 80%;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary) !important;
+        }
+        
+        .btn-primary-custom {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(255, 140, 0, 0.3);
+        }
+        
+        .btn-primary-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 140, 0, 0.4);
+        }
+        /* Hero Video */
+        
+        .hero-video {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero-video::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1600&q=80') center/cover;
-            opacity: 0.15;
+            background: linear-gradient(135deg, rgba(26, 26, 26, 0.7), rgba(217, 116, 53, 0.5));
+            z-index: 1;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         
         .hero-content {
             position: relative;
-            z-index: 1;
-        }
-        
-        .hero h1 {
-            font-size: 60px;
-            font-weight: 700;
-        }
-        
-        .hero p.subtitle {
-            font-size: 24px;
-            margin: 16px 0;
-        }
-        
-        .btn-hero {
-            background: var(--primary-brown);
-            border: none;
-            padding: 12px 30px;
-            font-size: 16px;
-            font-weight: 600;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-hero:hover {
-            background: var(--primary-orange);
+            z-index: 2;
             color: white;
-        }
-        /* Stats */
-        
-        .stat-card {
             text-align: center;
-            padding: 40px 20px;
-            background: #f5f5f7;
-            border-radius: 18px;
-            transition: transform 0.3s ease;
+            padding: 0 20px;
         }
         
-        .stat-card:hover {
-            transform: translateY(-5px);
+        .hero-content h1 {
+            font-size: 4.5rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s;
+        }
+        
+        .hero-content .lead {
+            font-size: 1.6rem;
+            margin-bottom: 35px;
+            animation: fadeInUp 1.2s;
+        }
+        
+        .hero-badges {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+            animation: fadeInUp 1.4s;
+        }
+        
+        .badge-item {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 15px 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Stats Counter */
+        
+        .stats-section {
+            background: var(--gradient);
+            color: white;
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-box {
+            text-align: center;
+            padding: 20px;
         }
         
         .stat-number {
-            font-size: 48px;
-            font-weight: 700;
-            color: var(--primary-orange);
-            margin-bottom: 8px;
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 10px;
         }
         
         .stat-label {
-            font-size: 16px;
-            color: var(--text-light);
+            font-size: 1.1rem;
+            opacity: 0.95;
         }
-        /* Services */
+        /* Clients Logos */
         
-        .service-card {
+        .clients-section {
+            padding: 80px 0;
             background: white;
-            padding: 40px 20px;
-            border-radius: 18px;
+        }
+        
+        .client-logo {
+            height: 60px;
+            filter: grayscale(100%);
+            opacity: 0.5;
+            transition: all 0.3s;
+        }
+        
+        .client-logo:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+        /* Features Grid */
+        
+        .features-enterprise {
+            padding: 100px 0;
+            background: var(--light);
+        }
+        
+        .feature-card-enterprise {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s;
+            height: 100%;
+            border-top: 4px solid var(--primary);
+        }
+        
+        .feature-card-enterprise:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(255, 140, 0, 0.15);
+        }
+        
+        .feature-icon-large {
+            width: 100px;
+            height: 100px;
+            background: var(--gradient);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 30px;
+        }
+        /* ROI Calculator */
+        
+        .roi-calculator {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+        }
+        
+        .calculator-box {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            padding: 50px;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .form-range::-webkit-slider-thumb {
+            background: var(--primary);
+        }
+        
+        .result-box {
+            background: var(--gradient);
+            padding: 40px;
+            border-radius: 20px;
             text-align: center;
-            transition: all 0.3s ease;
-            border: 1px solid #e5e5e7;
+            margin-top: 30px;
         }
         
-        .service-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(217, 116, 53, 0.15);
-            border-color: var(--primary-orange);
+        .result-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+        }
+        /* Portfolio Gallery */
+        
+        .portfolio-enterprise {
+            padding: 100px 0;
+            background: white;
         }
         
-        .service-icon {
+        .portfolio-filter {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .filter-btn {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            padding: 10px 30px;
+            border-radius: 25px;
+            margin: 5px;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .portfolio-item-enterprise {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .portfolio-item-enterprise img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            transition: transform 0.6s;
+        }
+        
+        .portfolio-item-enterprise:hover img {
+            transform: scale(1.15);
+        }
+        
+        .portfolio-overlay-enterprise {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.95), transparent);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 40px;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+        
+        .portfolio-item-enterprise:hover .portfolio-overlay-enterprise {
+            opacity: 1;
+        }
+        
+        .project-info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .info-item {
+            text-align: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        /* Technology Stack */
+        
+        .tech-stack {
+            padding: 100px 0;
+            background: var(--light);
+        }
+        
+        .tech-item {
+            text-align: center;
+            padding: 40px 30px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+        }
+        
+        .tech-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        .tech-logo {
+            height: 80px;
+            margin-bottom: 20px;
+        }
+        /* Timeline */
+        
+        .timeline-section {
+            padding: 100px 0;
+            background: white;
+        }
+        
+        .timeline {
+            position: relative;
+            padding: 50px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--gradient);
+        }
+        
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            padding: 30px 60px 30px 0;
+            margin-bottom: 50px;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding: 30px 0 30px 60px;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            right: -20px;
+            top: 30px;
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: 0 0 0 4px var(--primary);
+        }
+        
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -20px;
+            right: auto;
+        }
+        
+        .timeline-content {
+            background: var(--light);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+        /* Video Testimonials */
+        
+        .video-testimonials {
+            padding: 100px 0;
+            background: var(--light);
+        }
+        
+        .video-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            margin-bottom: 30px;
+        }
+        
+        .video-thumbnail {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+        
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             width: 80px;
             height: 80px;
-            background: linear-gradient(135deg, var(--primary-orange), var(--primary-brown));
+            background: var(--primary);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 24px;
-            font-size: 36px;
             color: white;
+            font-size: 2rem;
+            transition: all 0.3s;
         }
-        /* Portfolio */
         
-        .portfolio-item {
-            position: relative;
-            border-radius: 18px;
-            overflow: hidden;
+        .video-card:hover .play-button {
+            transform: translate(-50%, -50%) scale(1.1);
+            box-shadow: 0 10px 30px rgba(255, 140, 0, 0.4);
+        }
+        /* Certifications */
+        
+        .certifications {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .cert-badge {
+            text-align: center;
+            padding: 30px;
+            background: var(--light);
+            border-radius: 15px;
+            transition: all 0.3s;
+        }
+        
+        .cert-badge:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .cert-icon {
+            font-size: 4rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        /* Live Chat Widget */
+        
+        .chat-widget {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+        
+        .chat-button {
+            width: 70px;
+            height: 70px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            box-shadow: 0 8px 25px rgba(255, 140, 0, 0.4);
             cursor: pointer;
+            transition: all 0.3s;
+            animation: pulse 2s infinite;
         }
         
-        .portfolio-item img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-        
-        .portfolio-item:hover img {
-            transform: scale(1.05);
-        }
-        
-        .portfolio-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
-            color: white;
-            padding: 20px;
-        }
-        
-        .portfolio-overlay h4 {
-            font-size: 18px;
-            margin: 0 0 5px;
-        }
-        /* Clients */
-        
-        .clients-section img {
-            filter: grayscale(0.8);
-            transition: all 0.3s ease;
-        }
-        
-        .clients-section img:hover {
-            filter: grayscale(0);
+        .chat-button:hover {
             transform: scale(1.1);
+        }
+        
+        @keyframes pulse {
+            0%,
+            100% {
+                box-shadow: 0 8px 25px rgba(255, 140, 0, 0.4);
+            }
+            50% {
+                box-shadow: 0 8px 35px rgba(255, 140, 0, 0.6);
+            }
+        }
+        /* Comparison Table */
+        
+        .comparison-table {
+            padding: 100px 0;
+            background: white;
+        }
+        
+        .comparison-card {
+            background: var(--light);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            height: 100%;
+            border: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .comparison-card.highlighted {
+            background: white;
+            border-color: var(--primary);
+            transform: scale(1.05);
+            box-shadow: 0 15px 50px rgba(255, 140, 0, 0.2);
+        }
+        /* FAQ Accordion */
+        
+        .faq-section {
+            padding: 100px 0;
+            background: var(--light);
+        }
+        
+        .accordion-button:not(.collapsed) {
+            background: var(--gradient);
+            color: white;
+        }
+        
+        .accordion-button:focus {
+            box-shadow: none;
+            border-color: var(--primary);
+        }
+        /* Contact Form */
+        
+        .contact-section {
+            padding: 100px 0;
+            background: white;
+        }
+        
+        .contact-form {
+            background: var(--light);
+            padding: 50px;
+            border-radius: 25px;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 0.2rem rgba(255, 140, 0, 0.25);
         }
         /* Footer */
         
         footer {
-            background: #1d1d1f;
-            color: #f5f5f7;
-            padding: 60px 0 20px;
+            background: var(--dark);
+            color: white;
+            padding: 80px 0 30px;
         }
         
-        footer a {
-            color: #a1a1a6;
+        .footer-widget h5 {
+            color: var(--primary);
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #aaa;
             text-decoration: none;
+            transition: all 0.3s;
         }
         
-        footer a:hover {
-            color: var(--primary-orange);
+        .footer-links a:hover {
+            color: var(--primary);
+            padding-left: 5px;
         }
+        
+        .social-links a {
+            display: inline-flex;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        /* Back to Top */
         
         .back-to-top {
             position: fixed;
-            bottom: 30px;
+            bottom: 100px;
             right: 30px;
-            background: var(--primary-orange);
-            color: white;
             width: 50px;
             height: 50px;
+            background: var(--primary);
             border-radius: 50%;
-            display: flex;
+            display: none;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            color: white;
+            font-size: 1.5rem;
             cursor: pointer;
             z-index: 999;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s;
         }
         
-        @media(max-width:768px) {
-            .hero h1 {
-                font-size: 40px;
+        .back-to-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-5px);
+        }
+        
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
             }
-            .hero p.subtitle {
-                font-size: 18px;
+            .stat-number {
+                font-size: 2.5rem;
+            }
+            .timeline::before {
+                left: 30px;
+            }
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                width: 100%;
+                left: 0;
+                padding: 30px 0 30px 80px;
+            }
+            .timeline-dot,
+            .timeline-item:nth-child(even) .timeline-dot {
+                left: 10px;
+                right: auto;
             }
         }
     </style>
 </head>
 
 <body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <i class="bi bi-telephone-fill"></i> <a href="tel:0212345678">02-123-4567</a>
+                    <i class="bi bi-envelope-fill ms-3"></i> <a href="mailto:info@rindaeng.com">info@rindaeng.com</a>
+                    <i class="bi bi-clock-fill ms-3"></i> จ-ศ: 8:00-17:00
+                </div>
+                <div class="col-md-4 text-md-end">
+                    <a href="#"><i class="bi bi-facebook"></i></a>
+                    <a href="#"><i class="bi bi-line"></i></a>
+                    <a href="#"><i class="bi bi-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
+    <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="#home">Rinda Engineering</a>
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-sun-fill"></i> Rinda Engineering
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="#home">หน้าแรก</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#services">บริการ</a></li>
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link" href="#home">หน้าแรก</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">เกี่ยวกับเรา</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#solutions">โซลูชัน</a></li>
                     <li class="nav-item"><a class="nav-link" href="#portfolio">ผลงาน</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">ติดต่อเรา</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#technology">เทคโนโลยี</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#calculator">คำนวณ ROI</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">ติดต่อ</a></li>
+                    <li class="nav-item ms-lg-3">
+                        <a href="#quote" class="btn btn-primary-custom">ขอใบเสนอราคา</a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Hero -->
-    <section class="hero" id="home">
-        <div class="container hero-content">
-            <h1 data-aos="fade-up">Rinda Engineering</h1>
-            <p class="subtitle" data-aos="fade-up" data-aos-delay="100">สร้างสรรค์ผลงานคุณภาพ ด้วยมาตรฐานระดับสากล</p>
-            <a href="#contact" class="btn btn-hero mt-3" data-aos="fade-up" data-aos-delay="200">ติดต่อเรา</a>
+    <!-- Hero Video -->
+    <section class="hero-video" id="home">
+        <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1920&q=80" class="hero-bg" alt="Solar Energy">
+        <div class="hero-content">
+            <h1 data-aos="fade-up">โซลูชันพลังงานสะอาด<br>ระดับองค์กร</h1>
+            <p class="lead" data-aos="fade-up" data-aos-delay="200">ผู้นำด้านโซล่าเซลล์และโครงสร้างพลังงานหมุนเวียน<br>มาตรฐานสากล ISO 9001:2015</p>
+            <div data-aos="fade-up" data-aos-delay="400">
+                <a href="#calculator" class="btn btn-primary-custom btn-lg me-3">
+                    <i class="bi bi-calculator"></i> คำนวณผลตอบแทน
+                </a>
+                <a href="#portfolio" class="btn btn-outline-light btn-lg">
+                    <i class="bi bi-collection"></i> ดูผลงาน
+                </a>
+            </div>
+            <div class="hero-badges">
+                <div class="badge-item"><i class="bi bi-award-fill"></i> ISO 9001:2015</div>
+                <div class="badge-item"><i class="bi bi-shield-check"></i> รับประกัน 25 ปี</div>
+                <div class="badge-item"><i class="bi bi-graph-up"></i> ROI 4-6 ปี</div>
+                <div class="badge-item"><i class="bi bi-people-fill"></i> 200+ โครงการ</div>
+            </div>
         </div>
     </section>
 
-    <!-- Stats -->
-    <section class="py-5">
+    <!-- Stats Counter -->
+    <section class="stats-section">
         <div class="container">
-            <div class="row g-4 text-center">
-                <div class="col-md-3">
-                    <div class="stat-card">
-                        <div class="stat-number" id="years">0</div>
+            <div class="row">
+                <div class="col-md-3 col-6" data-aos="fade-up">
+                    <div class="stat-box">
+                        <div class="stat-number counter" data-target="15">0</div>
                         <div class="stat-label">ปีประสบการณ์</div>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="stat-card">
-                        <div class="stat-number" id="projects">0</div>
+                <div class="col-md-3 col-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="stat-box">
+                        <div class="stat-number"><span class="counter" data-target="200">0</span>+</div>
                         <div class="stat-label">โครงการสำเร็จ</div>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="stat-card">
-                        <div class="stat-number" id="satisfaction">0</div>
-                        <div class="stat-label">ความพึงพอใจ</div>
+                <div class="col-md-3 col-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stat-box">
+                        <div class="stat-number"><span class="counter" data-target="50">0</span>MW</div>
+                        <div class="stat-label">กำลังการผลิตติดตั้ง</div>
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="stat-card">
-                        <div class="stat-number" id="team">0</div>
-                        <div class="stat-label">ทีมมืออาชีพ</div>
+                <div class="col-md-3 col-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="stat-box">
+                        <div class="stat-number"><span class="counter" data-target="98">0</span>%</div>
+                        <div class="stat-label">ความพึงพอใจลูกค้า</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services -->
-    <section class="py-5" id="services">
+    <!-- Clients Logos -->
+    <section class="clients-section">
         <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="section-title">บริการของเรา</h2>
-                <p class="section-subtitle">ครบวงจร ครอบคลุมทุกความต้องการด้านการก่อสร้าง</p>
+            <h6 class="text-center text-muted mb-4">องค์กรชั้นนำที่ไว้วางใจเรา</h6>
+            <div class="row justify-content-center align-items-center g-4">
+                <div class="col-6 col-md-2 text-center">
+                    <img src="https://cdn.brandfetch.io/dimensiondata.com/fallback/lettermark/theme/dark/h/256/w/256/icon?c=1bfwsmEH20zzEfSNTed" class="client-logo" alt="Client">
+                </div>
+                <div class="col-6 col-md-2 text-center">
+                    <img src="https://th.bing.com/th/id/OIP.7LeQTybV-4kcwj15Oil24AHaEa?w=275&h=180&c=7&r=0&o=7&pid=1.7&rm=3" class="client-logo" alt="Client">
+                </div>
+                <div class="col-6 col-md-2 text-center">
+                    <img src="https://th.bing.com/th/id/OIP.jEj4ptGijpyXfmuIha5q9gHaHa?o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3" class="client-logo" alt="Client">
+                </div>
+                <div class="col-6 col-md-2 text-center">
+                    <img src="https://seeklogo.com/images/C/cp-logo-6736414FBE-seeklogo.com.png" class="client-logo" alt="Client">
+                </div>
+                <div class="col-6 col-md-2 text-center">
+                    <img src="https://cheetah.co.th/wp-content/uploads/2024/01/Amita-Technology-2.png" class="client-logo" alt="Client">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enterprise Features -->
+    <section class="features-enterprise" id="solutions">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-4 fw-bold">โซลูชันครบวงจรระดับองค์กร</h2>
+                <p class="lead text-muted">บริการมาตรฐานสากลที่ตอบโจทย์ทุกความต้องการ</p>
             </div>
             <div class="row g-4">
                 <div class="col-md-4" data-aos="fade-up">
-                    <div class="service-card">
-                        <div class="service-icon"><i class="bi bi-building"></i></div>
-                        <h3>งานก่อสร้างอาคาร</h3>
-                        <p>รับเหมาก่อสร้างอาคารทุกประเภท</p>
-                        <a href="#contact" class="btn btn-outline-warning mt-2">ติดต่อเรา</a>
+                    <div class="feature-card-enterprise">
+                        <div class="feature-icon-large"><i class="bi bi-building"></i></div>
+                        <h3>Commercial & Industrial</h3>
+                        <p class="text-muted">ระบบโซล่าเซลล์ขนาดใหญ่สำหรับโรงงาน อาคารสำนักงาน และศูนย์การค้า ลดต้นทุนพลังงานได้สูงสุด</p>
+                        <ul class="list-unstyled mt-3">
+                            <li><i class="bi bi-check-circle-fill text-success"></i> ระบบ 100kW - 5MW+</li>
+                            <li><i class="bi bi-check-circle-fill text-success"></i> Energy Management System</li>
+                            <li><i class="bi bi-check-circle-fill text-success"></i> Remote Monitoring 24/7</li>
+                        </ul>
                     </div>
                 </div>
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="service-card">
-                        <div class="service-icon"><i class="bi bi-hammer"></i></div>
-                        <h3>ต่อเติม-รีโนเวท</h3>
-                        <p>ปรับปรุงอาคารเก่าให้ทันสมัย</p>
-                        <a href="#contact" class="btn btn-outline-warning mt-2">ติดต่อเรา</a>
+                    <div class="feature-card-enterprise">
+                        <div class="feature-icon-large"><i class="bi bi-house-fill"></i></div>
+                        <h3>Residential Solutions</h3>
+                        <p class="text-muted">โซล่าเซลล์บ้านพักอาศัย คอนโดมิเนียม และหมู่บ้านจัดสรร ลดค่าไฟได้ทันที รักษ์โลก</p>
+                        <ul class="list-unstyled mt-3">
+                            <li><i class="bi bi-check-circle-fill text-success"></i> ระบบ 3kW - 20kW</li>
+                            <li><i class="bi bi-check-circle-fill text-success"></i> Mobile App Monitoring</li>
+                            <li><i class="bi bi-check-circle-fill text-success"></i> แผงลูกค์สวยงาม</li>
+                        </ul>
                     </div>
                 </div>
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="service-card">
-                        <div class="service-icon"><i class="bi bi-gear"></i></div>
-                        <h3>งานโครงสร้าง</h3>
-                        <p>ออกแบบและก่อสร้างเสาเข็ม งานโครงเหล็ก</p>
-                        <a href="#contact" class="btn btn-outline-warning mt-2">ติดต่อเรา</a>
+                    <div class="feature-card-enterprise">
+                        <div class="feature-icon-large"><i class="bi bi-battery-charging"></i></div>
+                        <h3>Energy Storage System</h3>
+                        <p class="text-muted">ระบบกักเก็บพลังงาน Battery Storage เพื่อใช้ยามฉุกเฉินและเพิ่มประสิทธิภาพการใช้ไฟ</p>
+                        <ul class="list-unstyled mt-3">
+                            <li><i class="bi bi-check-circle-fill text-success"></i> Lithium-ion Battery</li>
+                            <li><i class="bi bi-check-circle-fill text-success"></i> Backup Power</li>
+                            <li><i class="bi bi-check-circle-fill text-success"></i> Peak Shaving</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Portfolio -->
-    <section class="py-5 bg-light" id="portfolio">
+    <!-- ROI Calculator -->
+    <section class="roi-calculator" id="calculator">
         <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="section-title">ผลงานของเรา</h2>
-                <p class="section-subtitle">โครงการที่ภูมิใจและประสบความสำเร็จ</p>
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-4 fw-bold">คำนวณผลตอบแทน (ROI)</h2>
+                <p class="lead">คำนวณประมาณการประหยัดค่าไฟและระยะเวลาคืนทุน</p>
             </div>
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <a href="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80" data-lightbox="portfolio" class="portfolio-item">
-                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80" alt="โครงการอาคารสำนักงาน">
-                        <div class="portfolio-overlay">
-                            <h4>โครงการอาคารสำนักงาน CBD</h4>
+            <div class="row justify-content-center">
+                <div class="col-lg-8" data-aos="fade-up">
+                    <div class="calculator-box">
+                        <div class="mb-4">
+                            <label class="form-label">ค่าไฟรายเดือนปัจจุบัน (บาท)</label>
+                            <input type="range" class="form-range" min="1000" max="100000" step="1000" value="10000" id="electricBill">
+                            <div class="text-center mt-2">
+                                <h3 id="billDisplay">10,000</h3>
+                                <small>บาท/เดือน</small>
+                            </div>
                         </div>
-                    </a>
-                </div>
-                <div class="col-md-4">
-                    <a href="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600&q=80" data-lightbox="portfolio" class="portfolio-item">
-                        <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600&q=80" alt="โครงการโรงงาน">
-                        <div class="portfolio-overlay">
-                            <h4>โครงการโรงงาน</h4>
+                        <div class="mb-4">
+                            <label class="form-label">ขนาดพื้นที่หลังคาโดยประมาณ (ตร.ม.)</label>
+                            <input type="range" class="form-range" min="20" max="1000" step="10" value="100" id="roofArea">
+                            <div class="text-center mt-2">
+                                <h3 id="areaDisplay">100</h3>
+                                <small>ตารางเมตร</small>
+                            </div>
                         </div>
-                    </a>
+                        <div class="result-box">
+                            <h4>ผลลัพธ์โดยประมาณ</h4>
+                            <div class="row mt-4">
+                                <div class="col-md-4">
+                                    <div class="result-number" id="systemSize">10</div>
+                                    <div>kW ระบบที่แนะนำ</div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="result-number" id="savings">8,500</div>
+                                    <div>บาท/เดือน ประหยัดได้</div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="result-number" id="payback">5.2</div>
+                                    <div>ปี คืนทุน</div>
+                                </div>
+                            </div>
+                            <button class="btn btn-light btn-lg mt-4">ขอใบเสนอราคาฟรี</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Clients -->
-    <section class="py-5 clients-section">
-        <div class="container text-center">
-            <h2 class="mb-4">บริษัทที่เคยร่วมงานด้วย</h2>
-            <div class="d-flex justify-content-center flex-wrap gap-4">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" height="50">
-                <img src="https://cdn.brandfetch.io/dimensiondata.com/fallback/lettermark/theme/dark/h/256/w/256/icon?c=1bfwsmEH20zzEfSNTed" alt="NTT DATA" height="50">
+    <!-- Portfolio with Filter -->
+    <section class="portfolio-enterprise" id="portfolio">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-4 fw-bold">ผลงานที่ภูมิใจ</h2>
+                <p class="lead text-muted">โครงการติดตั้งโซล่าเซลล์มากกว่า 200 โครงการทั่วประเทศ</p>
+            </div>
+
+            <div class="portfolio-filter" data-aos="fade-up">
+                <button class="filter-btn active" data-filter="all">ทั้งหมด</button>
+                <button class="filter-btn" data-filter="industrial">โรงงาน</button>
+                <button class="filter-btn" data-filter="commercial">อาคารพาณิชย์</button>
+                <button class="filter-btn" data-filter="residential">บ้านพักอาศัย</button>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4" data-aos="zoom-in">
+                    <div class="portfolio-item-enterprise" data-category="industrial">
+                        <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=600&q=80" alt="Factory">
+                        <div class="portfolio-overlay-enterprise">
+                            <h4>โรงงานผลิตชิ้นส่วนยานยนต์</h4>
+                            <p>ระบบ 800kW - ชลบุรี</p>
+                            <div class="project-info">
+                                <div class="info-item">
+                                    <strong>800kW</strong><br>
+                                    <small>กำลังผลิต</small>
+                                </div>
+                                <div class="info-item">
+                                    <strong>85%</strong><br>
+                                    <small>ลดค่าไฟ</small>
+                                </div>
+                                <div class="info-item">
+                                    <strong>4.5ปี</strong><br>
+                                    <small>คืนทุน</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="portfolio-item-enterprise" data-category="commercial">
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&q=80" alt="Office">
+                        <div class="portfolio-overlay-enterprise">
+                            <h4>อาคารสำนักงาน 15 ชั้น</h4>
+                            <p>ระบบ 250kW - กรุงเทพฯ</p>
+                            <div class="project-info">
+                                <div class="info-item">
+                                    <strong>250kW</strong><br>
+                                    <small>กำลังผลิต</small>
+                                </div>
+                                <div class="info-item">
+                                    <strong>70%</strong><br>
+                                    <small>ลดค่าไฟ</small>
+                                </div>
+                                <div class="info-item">
+                                    <strong>5.2ปี</strong><br>
+                                    <small>คืนทุน</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="portfolio-item-enterprise" data-category="residential">
+                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80" alt="House">
+                        <div class="portfolio-overlay-enterprise">
+                            <h4>บ้านหรูเดี่ยว 2 ชั้น</h4>
+                            <p>ระบบ 10kW - ปทุมธานี</p>
+                            <div class="project-info">
+                                <div class="info-item">
+                                    <strong>10kW</strong><br>
+                                    <small>กำลังผลิต</small>
+                                </div>
+                                <div class="info-item">
+                                    <strong>90%</strong><br>
+                                    <small>ลดค่าไฟ</small>
+                                </div>
+                                <div class="info-item">
+                                    <strong>4.8ปี</strong><br>
+                                    <small>คืนทุน</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Stack -->
+    <section class="tech-stack" id="technology">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-4 fw-bold">เทคโนโลยีและพันธมิตร</h2>
+                <p class="lead text-muted">ใช้อุปกรณ์และเทคโนโลยีชั้นนำระดับโลก</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-6 col-md-3" data-aos="fade-up">
+                    <div class="tech-item">
+                        <img src="https://via.placeholder.com/200x80/fff/ff8c00?text=LONGI" class="tech-logo" alt="LONGI">
+                        <h6>LONGI Solar</h6>
+                        <small class="text-muted">แผงโซล่าเซลล์</small>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="tech-item">
+                        <img src="https://via.placeholder.com/200x80/fff/ff8c00?text=HUAWEI" class="tech-logo" alt="HUAWEI">
+                        <h6>Huawei</h6>
+                        <small class="text-muted">Inverter</small>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="tech-item">
+                        <img src="https://via.placeholder.com/200x80/fff/ff8c00?text=SMA" class="tech-logo" alt="SMA">
+                        <h6>SMA Solar</h6>
+                        <small class="text-muted">Inverter</small>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="tech-item">
+                        <img src="https://via.placeholder.com/200x80/fff/ff8c00?text=TESLA" class="tech-logo" alt="TESLA">
+                        <h6>Tesla</h6>
+                        <small class="text-muted">Energy Storage</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="timeline-section">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-4 fw-bold">กระบวนการทำงาน</h2>
+                <p class="lead text-muted">5 ขั้นตอนสู่ระบบโซล่าเซลล์ของคุณ</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item" data-aos="fade-right">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h4><i class="bi bi-1-circle-fill text-primary"></i> ปรึกษาและสำรวจ</h4>
+                        <p>ทีมวิศวกรลงพื้นที่สำรวจ วิเคราะห์ความเหมาะสม วัดปริมาณแสงแดด และให้คำแนะนำเบื้องต้น</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos="fade-left">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h4><i class="bi bi-2-circle-fill text-primary"></i> ออกแบบและเสนอราคา</h4>
+                        <p>ออกแบบระบบที่เหมาะสม คำนวณ ROI พร้อมเสนอราคาโดยละเอียด มีตัวเลือกหลายแพ็คเกจ</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos="fade-right">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h4><i class="bi bi-3-circle-fill text-primary"></i> ขออนุญาตและเอกสาร</h4>
+                        <p>จัดการเอกสารและขออนุญาตติดตั้งกับการไฟฟ้า ดำเนินการให้ครบถ้วนตามกฎหมาย</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos="fade-left">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h4><i class="bi bi-4-circle-fill text-primary"></i> ติดตั้งและทดสอบ</h4>
+                        <p>ติดตั้งโดยวิศวกรและช่างผู้เชี่ยวชาญ ทดสอบระบบครบถ้วน รับรองคุณภาพก่อนส่งมอบ</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos="fade-right">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h4><i class="bi bi-5-circle-fill text-primary"></i> บริการหลังการขาย</h4>
+                        <p>ติดตามผลการผลิตไฟ บำรุงรักษาและตรวจสอบ พร้อมรับประกันยาวนาน 25 ปี</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications -->
+    <section class="certifications">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-5 fw-bold">มาตรฐานและการรับรอง</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-3 col-6" data-aos="zoom-in">
+                    <div class="cert-badge">
+                        <div class="cert-icon"><i class="bi bi-award-fill"></i></div>
+                        <h6>ISO 9001:2015</h6>
+                        <small class="text-muted">มาตรฐานระบบคุณภาพ</small>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="cert-badge">
+                        <div class="cert-icon"><i class="bi bi-patch-check-fill"></i></div>
+                        <h6>IEC 61215</h6>
+                        <small class="text-muted">มาตรฐานแผงโซล่าเซลล์</small>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="cert-badge">
+                        <div class="cert-icon"><i class="bi bi-shield-check"></i></div>
+                        <h6>TIS 2432</h6>
+                        <small class="text-muted">มาตรฐานไทย</small>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="cert-badge">
+                        <div class="cert-icon"><i class="bi bi-globe"></i></div>
+                        <h6>สมาคมพลังงานหมุนเวียน</h6>
+                        <small class="text-muted">สมาชิกเต็มรูปแบบ</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Accordion -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-4 fw-bold">คำถามที่พบบ่อย (FAQ)</h2>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8" data-aos="fade-up">
+                    <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                    โซล่าเซลล์ใช้ได้นานแค่ไหน?
+                                </button>
+                            </h2>
+                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    แผงโซล่าเซลล์คุณภาพดีมีอายุการใช้งาน 25-30 ปี โดยเรารับประกันประสิทธิภาพ 25 ปี ยังคงผลิตไฟได้อย่างน้อย 80% ของกำลังเดิม
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                    คืนทุนใช้เวลานานแค่ไหน?
+                                </button>
+                            </h2>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    โดยทั่วไปจะคืนทุนภายใน 4-6 ปี ขึ้นอยู่กับปริมาณการใช้ไฟและขนาดระบบ หลังจากนั้นคุณจะได้ใช้ไฟฟรีไปอีก 20+ ปี
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                    วันฝนหรือครึ้มจะผลิตไฟได้ไหม?
+                                </button>
+                            </h2>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    ได้ครับ แต่จะผลิตได้น้อยกว่าวันแดดจัด โดยทั่วไปจะผลิตได้ประมาณ 10-30% ของกำลังการผลิตเต็มที่ ระบบจะเสริมด้วยไฟจากการไฟฟ้าอัตโนมัติ
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                    ต้องดูแลรักษาอย่างไร?
+                                </button>
+                            </h2>
+                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    โซล่าเซลล์ดูแลง่าย เพียงล้างทำความสะอาดแผงปีละ 2-3 ครั้ง และตรวจสอบระบบโดยช่างผู้เชี่ยวชาญปีละครั้ง เรามีบริการดูแลหลังการขายให้ด้วย
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-4 fw-bold">ติดต่อเรา</h2>
+                <p class="lead text-muted">พร้อมให้คำปรึกษาและตอบทุกคำถาม</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 mb-4" data-aos="fade-right">
+                    <div class="contact-form">
+                        <form id="contactForm">
+                            <div class="mb-3">
+                                <label class="form-label">ชื่อ-นามสกุล *</label>
+                                <input type="text" class="form-control form-control-lg" required>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">อีเมล *</label>
+                                    <input type="email" class="form-control form-control-lg" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">เบอร์โทร *</label>
+                                    <input type="tel" class="form-control form-control-lg" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">ประเภทโครงการ</label>
+                                <select class="form-select form-select-lg">
+                                    <option>บ้านพักอาศัย</option>
+                                    <option>อาคารพาณิชย์</option>
+                                    <option>โรงงานอุตสาหกรรม</option>
+                                    <option>อื่นๆ</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">ข้อความ</label>
+                                <textarea class="form-control" rows="4"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary-custom btn-lg w-100">
+                                <i class="bi bi-send-fill"></i> ส่งข้อความ
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="mb-4">
+                        <h4><i class="bi bi-geo-alt-fill text-primary"></i> ที่อยู่สำนักงาน</h4>
+                        <p class="text-muted">123/45 ถนนสุขุมวิท แขวงคลองตัน<br>เขตคลองเตย กรุงเทพฯ 10110</p>
+                    </div>
+                    <div class="mb-4">
+                        <h4><i class="bi bi-telephone-fill text-primary"></i> โทรศัพท์</h4>
+                        <p class="text-muted">
+                            สำนักงาน: 02-123-4567<br> มือถือ: 081-234-5678, 089-876-5432
+                        </p>
+                    </div>
+                    <div class="mb-4">
+                        <h4><i class="bi bi-envelope-fill text-primary"></i> อีเมล</h4>
+                        <p class="text-muted">
+                            ทั่วไป: info@rindaengineering.com<br> ฝ่ายขาย: sales@rindaengineering.com
+                        </p>
+                    </div>
+                    <div class="mb-4">
+                        <h4><i class="bi bi-clock-fill text-primary"></i> เวลาทำการ</h4>
+                        <p class="text-muted">
+                            จันทร์ - ศุกร์: 08:00 - 17:00 น.<br> เสาร์: 08:00 - 12:00 น.<br> อาทิตย์และวันหยุดนักขัตฤกษ์: ปิด
+                        </p>
+                    </div>
+                    <div>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3875.8276088404956!2d100.5601649!3d13.7368354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDQ0JzEyLjYiTiAxMDDCsDMzJzM2LjYiRQ!5e0!3m2!1sth!2sth!4v1234567890" width="100%"
+                            height="300" style="border:0; border-radius: 15px;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer id="contact">
-        <div class="container text-center text-md-start">
+    <footer>
+        <div class="container">
             <div class="row">
-                <div class="col-md-4 mb-4">
-                    <h5>Rinda Engineering</h5>
-                    <p>บริษัทรับเหมาก่อสร้างทั่วไป ที่คุณไว้วางใจ มุ่งมั่นสร้างสรรค์ผลงานคุณภาพ</p>
+                <div class="col-lg-4 mb-4">
+                    <div class="footer-widget">
+                        <h5><i class="bi bi-sun-fill"></i> Rinda Engineering</h5>
+                        <p class="text-muted">ผู้นำด้านโซล่าเซลล์และรับเหมาก่อสร้างระดับองค์กร มากกว่า 15 ปีแห่งความเชี่ยวชาญ พร้อมส่งมอบโซลูชันพลังงานสะอาดที่ดีที่สุด</p>
+                        <div class="social-links mt-3">
+                            <a href="#"><i class="bi bi-facebook"></i></a>
+                            <a href="#"><i class="bi bi-line"></i></a>
+                            <a href="#"><i class="bi bi-youtube"></i></a>
+                            <a href="#"><i class="bi bi-instagram"></i></a>
+                            <a href="#"><i class="bi bi-linkedin"></i></a>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-4 mb-4">
-                    <h5>ติดต่อเรา</h5>
-                    <p>📍 123/45 ถนนสุขุมวิท กรุงเทพฯ</p>
-                    <p>📞 02-XXX-XXXX</p>
-                    <p>✉️ info@rindaengineering.com</p>
+                <div class="col-lg-2 col-6 mb-4">
+                    <div class="footer-widget">
+                        <h5>บริการ</h5>
+                        <ul class="footer-links list-unstyled">
+                            <li><a href="#">โซล่าเซลล์บ้าน</a></li>
+                            <li><a href="#">โซล่าเซลล์โรงงาน</a></li>
+                            <li><a href="#">Energy Storage</a></li>
+                            <li><a href="#">รับเหมาก่อสร้าง</a></li>
+                            <li><a href="#">บำรุงรักษา</a></li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="col-md-4 mb-4">
-                    <h5>Social</h5>
-                    <a href="#"><i class="bi bi-facebook me-2"></i>Facebook</a><br>
-                    <a href="#"><i class="bi bi-linkedin me-2"></i>LinkedIn</a>
+                <div class="col-lg-2 col-6 mb-4">
+                    <div class="footer-widget">
+                        <h5>บริษัท</h5>
+                        <ul class="footer-links list-unstyled">
+                            <li><a href="#">เกี่ยวกับเรา</a></li>
+                            <li><a href="#">ผลงาน</a></li>
+                            <li><a href="#">เทคโนโลยี</a></li>
+                            <li><a href="#">ร่วมงานกับเรา</a></li>
+                            <li><a href="#">ข่าวสาร</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-6 mb-4">
+                    <div class="footer-widget">
+                        <h5>ช่วยเหลือ</h5>
+                        <ul class="footer-links list-unstyled">
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">วิธีการสั่งซื้อ</a></li>
+                            <li><a href="#">นโยบายรับประกัน</a></li>
+                            <li><a href="#">นโยบายความเป็นส่วนตัว</a></li>
+                            <li><a href="#">ติดต่อเรา</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-6 mb-4">
+                    <div class="footer-widget">
+                        <h5>ดาวน์โหลด</h5>
+                        <ul class="footer-links list-unstyled">
+                            <li><a href="#"><i class="bi bi-file-pdf"></i> แคตตาล็อก</a></li>
+                            <li><a href="#"><i class="bi bi-file-pdf"></i> Brochure</a></li>
+                            <li><a href="#"><i class="bi bi-file-pdf"></i> เอกสารรับประกัน</a></li>
+                            <li><a href="#"><i class="bi bi-file-pdf"></i> แบบฟอร์มติดต่อ</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-            <div class="text-center mt-4">&copy; 2024 Rinda Engineering. All Rights Reserved.</div>
+            <hr class="my-4 border-secondary">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-md-0 text-muted">&copy; 2024 Rinda Engineering Co., Ltd. All Rights Reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <img src="https://via.placeholder.com/60x40/555/fff?text=VISA" class="me-2" alt="Payment">
+                    <img src="https://via.placeholder.com/60x40/555/fff?text=MC" class="me-2" alt="Payment">
+                    <img src="https://via.placeholder.com/60x40/555/fff?text=QR" alt="Payment">
+                </div>
+            </div>
         </div>
     </footer>
 
-    <!-- Back to top -->
-    <div class="back-to-top" id="backToTop"><i class="bi bi-arrow-up"></i></div>
+    <!-- Chat Widget -->
+    <div class="chat-widget">
+        <div class="chat-button">
+            <i class="bi bi-chat-dots-fill"></i>
+        </div>
+    </div>
 
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/countup.js/2.6.2/countUp.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+    <!-- Back to Top -->
+    <div class="back-to-top" id="backToTop">
+        <i class="bi bi-arrow-up"></i>
+    </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init();
+        // Preloader
+        window.addEventListener('load', () => {
+            document.getElementById('preloader').style.display = 'none';
+        });
 
-        // Stats Animation
-        const options = {
-            duration: 2,
-            separator: ','
-        };
-        const years = new CountUp('years', 15, options);
-        const projects = new CountUp('projects', 200, options);
-        const satisfaction = new CountUp('satisfaction', 98, options);
-        const team = new CountUp('team', 50, options);
+        // AOS Animation
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
 
+        // Counter Animation
+        const counters = document.querySelectorAll('.counter');
+        counters.forEach(counter => {
+            const target = +counter.getAttribute('data-target');
+            const updateCounter = () => {
+                const current = +counter.innerText;
+                const increment = target / 100;
+                if (current < target) {
+                    counter.innerText = Math.ceil(current + increment);
+                    setTimeout(updateCounter, 20);
+                } else {
+                    counter.innerText = target;
+                }
+            };
+
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        updateCounter();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            });
+            observer.observe(counter);
+        });
+
+        // ROI Calculator
+        const electricBill = document.getElementById('electricBill');
+        const roofArea = document.getElementById('roofArea');
+        const billDisplay = document.getElementById('billDisplay');
+        const areaDisplay = document.getElementById('areaDisplay');
+        const systemSize = document.getElementById('systemSize');
+        const savings = document.getElementById('savings');
+        const payback = document.getElementById('payback');
+
+        function calculateROI() {
+            const bill = parseInt(electricBill.value);
+            const area = parseInt(roofArea.value);
+
+            billDisplay.textContent = bill.toLocaleString();
+            areaDisplay.textContent = area;
+
+            const size = Math.round(area / 10);
+            const monthlySavings = Math.round(bill * 0.85);
+            const totalCost = size * 30000;
+            const paybackYears = (totalCost / (monthlySavings * 12)).toFixed(1);
+
+            systemSize.textContent = size;
+            savings.textContent = monthlySavings.toLocaleString();
+            payback.textContent = paybackYears;
+        }
+
+        electricBill.addEventListener('input', calculateROI);
+        roofArea.addEventListener('input', calculateROI);
+
+        // Portfolio Filter
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+        });
+
+        // Back to Top
+        const backToTop = document.getElementById('backToTop');
         window.addEventListener('scroll', () => {
-            const statsSection = document.querySelector('.stat-card');
-            if (statsSection.getBoundingClientRect().top < window.innerHeight) {
-                years.start();
-                projects.start();
-                satisfaction.start();
-                team.start();
+            if (window.pageYOffset > 300) {
+                backToTop.style.display = 'flex';
+            } else {
+                backToTop.style.display = 'none';
             }
         });
-
-        // Navbar Scroll
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            navbar.classList.toggle('scrolled', window.scrollY > 50);
-        });
-
-        // Back to top
-        const backToTop = document.getElementById('backToTop');
         backToTop.addEventListener('click', () => {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form Submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('ขอบคุณสำหรับข้อความ! ทีมงานจะติดต่อกลับโดยเร็วที่สุด');
+            this.reset();
         });
     </script>
 </body>
